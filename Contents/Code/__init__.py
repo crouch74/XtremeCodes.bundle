@@ -6,7 +6,10 @@ PLAYER_API = None
 MENU_HANDLERS = None 
 
 def Start():
+    LOG('Start called')
+
     Plugin.AddViewGroup("List", viewMode="List", mediaType="items") 
+    LOG('Added view group')
 
     ObjectContainer.title1 = NAME
     ObjectContainer.view_group = 'List'
@@ -18,11 +21,15 @@ def Start():
     VideoClipObject.thumb = R(ART)
     VideoClipObject.art = R(ART)
 
+    LOG('Added Defaults')
+
     PLAYER_API = PlayerAPI(Prefs['server'], Prefs['username'], Prefs['password'])
     MENU_HANDLERS = MenuHandlers(PLAYER_API)
 
 @handler(PREFIX, NAME)
 def MainMenu():
+    Log('Main menu started')
+
     main_menu = [{
         'title': 'LIVE TV',
         'callback': LiveTV
@@ -33,13 +40,16 @@ def MainMenu():
         'title': 'Series',
         'callback': Series
     }]
+    Log('created mainmenu list')
     oc = ObjectContainer()
+    Log('created OC')
     for item in main_menu:
         oc.add(DirectoryObject(
             key = Callback(item.callback),
             title = item.tv
         ))
-    
+
+    Log('Filled oC')
     return oc
 
 @route(PREFIX + '/live_tv')
