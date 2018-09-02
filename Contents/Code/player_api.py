@@ -1,4 +1,4 @@
-import urllib, json
+import json
 
 class PlayerAPI():
     def __init__(self, server, username, password):
@@ -38,8 +38,8 @@ class PlayerAPI():
         for k,v in params.items():
             url += "&{}={}".format(k,v)
         print 'url', url
-        response = urllib.urlopen(url)
-        return json.loads(response.read())
+        response = HTTP.Request(url)
+        return json.loads(response.content)
 
     def get_live_stream_url(self, id):
         return '{}/live/{}/{}/{}.ts'.format(self.server, self.username, self.password, id)
