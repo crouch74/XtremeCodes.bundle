@@ -6,10 +6,10 @@ PLAYER_API = None
 MENU_HANDLERS = None 
 
 def Start():
-    LOG('Start called')
+    Log('Start called')
 
     Plugin.AddViewGroup("List", viewMode="List", mediaType="items") 
-    LOG('Added view group')
+    Log('Added view group')
 
     ObjectContainer.title1 = NAME
     ObjectContainer.view_group = 'List'
@@ -21,7 +21,7 @@ def Start():
     VideoClipObject.thumb = R(ART)
     VideoClipObject.art = R(ART)
 
-    LOG('Added Defaults')
+    Log('Added Defaults')
 
     PLAYER_API = PlayerAPI(Prefs['server'], Prefs['username'], Prefs['password'])
     MENU_HANDLERS = MenuHandlers(PLAYER_API)
@@ -45,7 +45,7 @@ def MainMenu():
     Log('created OC')
     for item in main_menu:
         oc.add(DirectoryObject(
-            key = Callback(item.callback),
+            key = Callback(item['callback']),
             title = item.tv
         ))
 
