@@ -14,7 +14,7 @@ class MenuHandlers():
             ))
         return oc
     
-    @handler(PREFIX, 'live_tv_category')
+    @route(PREFIX + '/live_tv_category', category_id = int)
     def LiveTVCategory(category_id):
         streams = self.player_api.get_live_streams(category_id)
         oc = ObjectContainer()
