@@ -5,6 +5,9 @@ NAME = 'XTREMECODES'
 PREFIX = '/video/' + NAME.lower()
 PLAYER_API = PlayerAPI(Prefs['server'], Prefs['username'], Prefs['password']); 
 MENU_HANDLERS = MenuHandlers(PLAYER_API)
+ART = 'art-default.jpg'
+ObjectContainer.view_group = 'List'
+ObjectContainer.art = R(ART)
 
 def Start():
     Plugin.AddViewGroup("List", viewMode="List", mediaType="items") 
