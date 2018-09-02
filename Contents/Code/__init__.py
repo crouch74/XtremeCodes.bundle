@@ -2,16 +2,24 @@ from player_api import PlayerAPI
 from menu_handlers import MenuHandlers
 from constants import PREFIX, ART, NAME
 
-PLAYER_API = PlayerAPI(Prefs['server'], Prefs['username'], Prefs['password']); 
-MENU_HANDLERS = MenuHandlers(PLAYER_API)
-
-ObjectContainer.view_group = 'List'
-ObjectContainer.art = R(ART)
+PLAYER_API = None 
+MENU_HANDLERS = None 
 
 def Start():
     Plugin.AddViewGroup("List", viewMode="List", mediaType="items") 
 
     ObjectContainer.title1 = NAME
+    ObjectContainer.view_group = 'List'
+    ObjectContainer.art = R(ART)
+    DirectoryObject.thumb = R(ART)
+    DirectoryObject.art = R(ART)
+    InputDirectoryObject.thumb = R(ART)
+    InputDirectoryObject.art = R(ART)
+    VideoClipObject.thumb = R(ART)
+    VideoClipObject.art = R(ART)
+
+    PLAYER_API = PlayerAPI(Prefs['server'], Prefs['username'], Prefs['password'])
+    MENU_HANDLERS = MenuHandlers(PLAYER_API)
 
 @handler(PREFIX, NAME)
 def MainMenu():
