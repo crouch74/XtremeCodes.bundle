@@ -1,4 +1,5 @@
 from helpers import Thumb
+from constants import PREFIX, ART, NAME
 
 class MenuHandlers():
     def __init__(self, player_api):
