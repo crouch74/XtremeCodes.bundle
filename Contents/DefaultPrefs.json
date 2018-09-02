@@ -1,0 +1,20 @@
+[
+    {
+        "id":       "server",
+        "label":    "Server url.",
+        "type":     "text",
+        "default":  "http://localhost:8000"
+    },
+    {
+        "id":       "username",
+        "label":    "Username",
+        "type":     "text",
+        "default":  ""
+    },
+    {
+        "id":       "password",
+        "label":    "Password",
+        "type":     "text",
+        "default":  ""
+    }
+]
