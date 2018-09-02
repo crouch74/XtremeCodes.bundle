@@ -1,6 +1,7 @@
+from player_api import PlayerAPI
+
 def Thumb(url):
-    try:
-        data = HTTP.Request(url, cacheTime = CACHE_1MONTH).content
-        return DataObject(data, 'image/jpeg')
-    except:
-        return Redirect(R(ICON))
+    Resource.ContentsOfURLWithFallback(url.replace(' ', '%20'))
+
+def get_player_api():
+    return PlayerAPI(Prefs['server'], Prefs['username'], Prefs['password'])

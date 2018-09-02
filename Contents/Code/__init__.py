@@ -1,9 +1,6 @@
-from player_api import PlayerAPI
-from menu_handlers import MenuHandlers
 from constants import PREFIX, ART, NAME
-
-PLAYER_API = PlayerAPI(Prefs['server'], Prefs['username'], Prefs['password']) 
-MENU_HANDLERS = MenuHandlers(PLAYER_API) 
+from routes import LiveTV, VOD, Series, LiveTVCategory, VodCategory
+from helpers import Thumb, get_player_api
 
 def Start():
 
@@ -40,15 +37,3 @@ def MainMenu():
         ))
 
     return oc
-
-@route(PREFIX + '/live_tv')
-def LiveTV():
-    return MENU_HANDLERS.LiveTV()
-
-@route(PREFIX + '/vod')
-def VOD():
-    return MENU_HANDLERS.VOD()
-
-@route(PREFIX + '/series')
-def Series():
-    return MENU_HANDLERS.Series()

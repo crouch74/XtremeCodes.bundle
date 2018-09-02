@@ -16,5 +16,15 @@
         <array>
             <string>NoURLServices</string>
         </array>
+        <key>URL</key>
+        <dict>
+            <key>URLs</key>
+            <dict>
+                <key>URLPatterns</key>
+                <array>
+                    <string>.*</string>
+                </array>
+            </dict>
+        </dict>
     </dict>
 </plist>

@@ -1,37 +1,26 @@
-from helpers import Thumb
+from helpers import get_player_api
 from constants import PREFIX, ART, NAME
 
-class MenuHandlers():
-    def __init__(self, player_api):
-        self.player_api = player_api
+class MenusService():
+    def __init__(self):
+        self.player_api = get_player_api()
     
-    def LiveTV(self):
+    def LiveTV(self, LiveTVCategory):
         categories = self.player_api.get_live_categories()
         oc = ObjectContainer()
         for category in categories:
             oc.add(DirectoryObject(
-                key = Callback(self.LiveTVCategory, category_id = category['category_id']),
+                key = Callback(LiveTVCategory, category_id = category['category_id']),
                 title = category['category_name']
             ))
         return oc
-    
-    @route(PREFIX + '/live_tv_category', category_id = int)
-    def LiveTVCategory(self, category_id):
-        streams = self.player_api.get_live_streams(category_id)
-        oc = ObjectContainer()
-        for stream in streams:
-            oc.add(VideoClipObject(
-                url = self.player_api.get_live_stream_url(stream['stream_id']),
-                title = stream['name'],
-                thumb = Callback(Thumb, url=stream['stream_icon'])
-            ))
-        return oc
 
-    def VOD(self):
+    def VOD(self, VodCategory):
         categories = self.player_api.get_vod_categories()
         oc = ObjectContainer()
         for category in categories:
             oc.add(DirectoryObject(
+                key = Callback(VodCategory, category_id = category['category_id']),
                 title = category['category_name']
             ))
         return oc

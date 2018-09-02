@@ -37,9 +37,15 @@ class PlayerAPI():
         url = "{}/player_api.php?username={}&password={}&action={}".format(self.server, self.username, self.password, action)
         for k,v in params.items():
             url += "&{}={}".format(k,v)
-        print 'url', url
+        Log("Requesting {}".format(url))
         response = HTTP.Request(url)
         return json.loads(response.content)
 
-    def get_live_stream_url(self, id):
-        return '{}/live/{}/{}/{}.ts'.format(self.server, self.username, self.password, id)
+    def get_url(self, id, stream_type):
+        if(stream_type == 'vod'):
+            return self.get_live_stream_url(id, 'movie', 'mp4')
+        if(stream_type == 'vod'):
+            return self.get_live_stream_url(id, 'live', 'ts')
+
+    def get_live_stream_url(self, id, stream_type, extension):
+        return '{}/{}/{}/{}/{}.{}'.format(self.server, stream_type, self.username, self.password, id, extension)
