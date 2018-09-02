@@ -46,10 +46,10 @@ def MainMenu():
 def LiveTV():
     return MENU_HANDLERS.LiveTV()
 
-@handler(PREFIX + '/vod')
+@route(PREFIX + '/vod')
 def VOD():
     return MENU_HANDLERS.VOD()
 
-@handler(PREFIX + '/series')
+@route(PREFIX + '/series')
 def Series():
     return MENU_HANDLERS.Series()
